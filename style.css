@@ -1,0 +1,350 @@
+/* ============================= */
+/* Base Styling + Backgrounds    */
+/* ============================= */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background 0.3s, color 0.3s;
+  min-height: 100vh;   /* ✅ ensures body always fills screen */
+  background-size: cover;   /* ✅ scales image to cover screen */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* ✅ keeps background fixed */
+}
+
+
+#app {
+  text-align: center;
+  width: 100%;
+}
+
+h1 {
+  margin-top: 20px;
+  text-align: center;
+}
+
+#controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin: 15px;
+}
+
+/* ============================= */
+/* Order Input (Resizable)       */
+/* ============================= */
+#orderInput {
+  width: 360px;
+  min-height: 40px;
+  max-height: 300px;
+  border-radius: 10px;
+  resize: both;   /* allow resizing all directions */
+  overflow: auto;
+}
+
+/* ============================= */
+/* Buttons General Styling       */
+/* ============================= */
+button {
+  height: 42px;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: background 0.3s, transform 0.2s, color 0.3s;
+}
+
+/* Reset Button Styling */
+#reset-textbox {
+  font-weight: bold;
+  padding: 8px 14px;
+  border-radius: 8px;
+  display: block;
+  margin-top: 10px;
+  width: 100%;
+  transition: background 0.3s, transform 0.2s;
+}
+
+/* ============================= */
+/* Queues                        */
+/* ============================= */
+#queues {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin: 20px auto;
+}
+
+.queue {
+  width: 260px;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.queue h2 {
+  margin-bottom: 12px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  padding: 8px;
+  margin: 6px 0;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Status Colors */
+.completed {
+  background-color: #4CAF50 !important;
+  color: white;
+}
+
+.cancelled {
+  background-color: #F44336 !important;
+  color: white;
+}
+
+.idle-chef {
+  background-color: #888 !important;
+  color: white;
+  font-style: italic;
+}
+
+/* ============================= */
+/* Settings Icon + Panel         */
+/* ============================= */
+#settings-panel {
+  position: fixed;
+  top: 55px;
+  left: 15px;
+  background: #444;
+  padding: 16px;
+  border-radius: 12px;
+  z-index: 1000;
+  width: 250px;
+
+  /* Animation setup */
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transform: translateY(-10px);
+  transition: 
+    max-height 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55), /* bounce effect */
+    opacity 0.3s ease,
+    transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+#settings-panel.active {
+  max-height: 500px; /* enough to fit all controls */
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- Settings Layout --- */
+#settings-panel h3 {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  text-align: center;
+  color: #fff;
+}
+
+/* Stack each setting item cleanly */
+#settings-panel label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+  font-size: 14px;
+  color: #eee;
+}
+
+/* Inputs and selects aligned */
+#settings-panel select,
+#settings-panel input[type="number"] {
+  flex: 1;
+  margin-left: 8px;
+  padding: 4px 6px;
+  border-radius: 6px;
+  border: 1px solid #aaa;
+  font-size: 14px;
+}
+
+/* Separate button styling inside panel */
+#settings-panel button {
+  margin-top: 4px;
+  width: 50%;
+  padding: 5px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background: #2196f3;
+  color: white;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+#settings-panel button:hover {
+  background: #1976d2;
+}
+
+/* Light theme adjustments */
+body.light #settings-panel {
+  background: #fff;
+  color: #000;
+}
+
+body.light #settings-panel h3 {
+  color: #000;
+}
+
+body.light #settings-panel label {
+  color: #222;
+}
+
+body.light #settings-panel select,
+body.light #settings-panel input[type="number"] {
+  border: 1px solid #ccc;
+}
+
+/* ============================= */
+/* Dark Theme Styles             */
+/* ============================= */
+body.dark {
+  background-color: #2E2E2E;
+  color: #FFFFFF;
+  background-image: url("dark-bg.jpg");
+}
+
+body.dark .queue {
+  background-color: rgba(58, 58, 58, 0.9);
+}
+
+body.dark li {
+  background-color: #444;
+}
+
+body.dark button {
+  background-color: #2196F3;
+  color: white;
+}
+
+body.dark button:hover {
+  background-color: #1976D2;
+  transform: scale(1.05);
+}
+
+body.dark button:active {
+  transform: scale(0.95);
+}
+
+body.dark #reset-textbox {
+  background-color: #FF9800;
+  color: white;
+}
+
+body.dark #reset-textbox:hover {
+  background-color: #F57C00;
+  transform: scale(1.05);
+}
+
+/* Dark inputs */
+body.dark textarea,
+body.dark input,
+body.dark select {
+  background-color: #333;
+  border: 1px solid #666;
+  color: #fff;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.3);
+}
+
+body.dark textarea:focus,
+body.dark input:focus,
+body.dark select:focus {
+  border-color: #2196F3;
+  box-shadow: 0 0 6px rgba(33,150,243,0.6);
+}
+
+body.dark #settings-panel {
+  background: rgba(68, 68, 68, 0.95);
+}
+
+/* ============================= */
+/* Light Theme Styles            */
+/* ============================= */
+body.light {
+  background-color: #f5f5f5;
+  color: #000;
+  background-image: url("light-bg.jpg");
+}
+
+body.light .queue {
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 1px solid #ddd;
+}
+
+body.light li {
+  background-color: #f0f0f0;
+}
+
+body.light button {
+  background-color: #90CAF9;
+  color: #000;
+}
+
+body.light button:hover {
+  background-color: #64B5F6;
+  transform: scale(1.05);
+}
+
+body.light button:active {
+  transform: scale(0.95);
+}
+
+body.light #reset-textbox {
+  background-color: #FFD54F;
+  color: #333;
+}
+
+body.light #reset-textbox:hover {
+  background-color: #FFCA28;
+  transform: scale(1.05);
+}
+
+/* Light inputs */
+body.light textarea,
+body.light input,
+body.light select {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  color: #000;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+}
+
+body.light textarea:focus,
+body.light input:focus,
+body.light select:focus {
+  border-color: #64B5F6;
+  box-shadow: 0 0 6px rgba(100,181,246,0.6);
+}
+
+body.light #settings-panel {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid #ddd;
+}

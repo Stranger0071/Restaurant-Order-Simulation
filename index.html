@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TableTop Simulator</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#2196F3">
+  <link rel="icon" type="image/png" href="icon-192.png">
+</head>
+<script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker
+      .register("service-worker.js")
+      .then(() => console.log("Service Worker Registered"))
+      .catch((err) => console.error("Service Worker Failed:", err));
+  }
+</script>
+
+<body class="dark">
+
+  <!-- Settings Icon -->
+  <div id="settings-icon">⚙️</div>
+
+  <!-- Settings Panel -->
+  <div id="settings-panel" class="hidden">
+    <h3>Settings</h3>
+
+    <label>Theme:
+      <select id="theme-select">
+        <option value="dark">Dark</option>
+        <option value="light">Light</option>
+      </select>
+    </label>
+
+    <label>Font Size:
+      <input type="number" id="font-size" value="14" min="10" max="24"> px
+    </label>
+
+    <label>Font Type:
+      <select id="font-select">
+        <option value="Arial, sans-serif">Arial</option>
+        <option value="Georgia, serif">Georgia</option>
+        <option value="Courier New, monospace">Courier New</option>
+        <option value="'Times New Roman', serif">Times New Roman</option>
+        <option value="Verdana, sans-serif">Verdana</option>
+      </select>
+    </label>
+
+    <label>Textbox Width:
+      <input type="range" id="textbox-width" min="200" max="600" value="360">
+    </label>
+
+    <!-- Reset Textbox Size -->
+    <div class="textbox-reset-container">
+      <button id="reset-textbox">Reset Textbox Size</button>
+    </div>
+
+    <label>Number of Chefs:
+      <input type="number" id="chefInput" value="2" min="1" max="10">
+      <button onclick="setChefs()">Set</button>
+    </label>
+  </div>
+
+  <!-- App UI -->
+  <div id="app">
+    <h1>TableTop Simulator</h1>
+    <div id="controls">
+      <textarea id="orderInput" placeholder="Enter items"></textarea>
+      <button onclick="addOrder()">Add Order</button>
+    </div>
+
+    <div id="queues">
+      <div class="queue" id="orderQueue">
+        <h2>Order Queue</h2>
+        <ul id="orderList"></ul>
+      </div>
+
+      <div class="queue" id="cookingQueue">
+        <h2>Cooking Queue</h2>
+        <ul id="cookingList"></ul>
+      </div>
+
+      <div class="queue" id="completedQueue">
+        <h2>Completed Orders</h2>
+        <ul id="completedList"></ul>
+      </div>
+
+      <div class="queue" id="cancelledQueue">
+        <h2>Cancelled Orders</h2>
+        <ul id="cancelledList"></ul>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
